@@ -1,5 +1,6 @@
 
 
+
 // const App = () => {
 
 //   const products = [
@@ -61,7 +62,7 @@
 //   return (
 //     <div>
 //       {products.map((products) => {
-//         return <div className="bg-slate-700 space-y-2 mb-3 p-4">
+//         return <div className="grid-flow-col">
 //           <h1>{products.id}</h1>
 //           <p>{products.title}</p>
 //           <p>{products.description}</p>

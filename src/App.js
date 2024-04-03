@@ -4,6 +4,8 @@ import Home from './features/home/Home';
 import About from './features/About';
 import Contact from './features/Contact';
 import RootLayOut from './ui/RootLayOut';
+import NotFound from './ui/NotFound';
+import Detail from './features/home/Detail';
 
 const App = () => {
 
@@ -13,8 +15,10 @@ const App = () => {
       element: <RootLayOut />,
       children: [
         { index: true, element: <Home /> },
+        { path: 'product/Detail/:id', element: <Detail /> },
         { path: 'About', element: <About /> },
         { path: 'Contact', element: <Contact /> },
+        { path: '*', element: <NotFound /> },
 
       ]
     },

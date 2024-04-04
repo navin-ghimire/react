@@ -2,7 +2,15 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    
+    extend: {
+      backgroundColor: {
+        'common': 'pink'
+      },
+      gridTemplateColumns: {
+        'auto-fit': 'repeat(auto-fit, minmax(350px, 1fr))'
+      }
+    },
   },
   plugins: [],
 }

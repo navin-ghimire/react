@@ -4,6 +4,15 @@ module.exports = {
   theme: {
     
     extend: {
+     animation: {
+        border: 'border 4s ease infinite',
+      },
+      keyframes: {
+        border: {
+          '0%,': { border: '4px solid black' },
+          '100%': { border: '8px solid pink' },
+        },
+      },
       backgroundColor: {
         'common': 'pink'
       },

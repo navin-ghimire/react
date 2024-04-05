@@ -1,11 +1,12 @@
 import React from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Home from './features/home/Home';
+
 import About from './features/About';
 import Contact from './features/Contact';
 import RootLayOut from './ui/RootLayOut';
 import NotFound from './ui/NotFound';
-import Detail from './features/home/Detail';
+import Main from './features/home/dashboard/Main';
+
 
 const App = () => {
 
@@ -14,8 +15,8 @@ const App = () => {
       path: '/',
       element: <RootLayOut />,
       children: [
-        { index: true, element: <Home /> },
-        { path: 'product/Detail/:id', element: <Detail /> },
+        { index: true, element: <Main /> },
+
         { path: 'About', element: <About /> },
         { path: 'Contact', element: <Contact /> },
         { path: '*', element: <NotFound /> },

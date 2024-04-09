@@ -1,47 +1,17 @@
-import { useState } from "react";
-import { useApiHooks } from "../hooks/Api_hooks"
-import Detail from "./Detail";
-
-
+import React, { useEffect, useState } from 'react'
+import Sample from './Sample';
 
 const Home = () => {
-
-  const [id, setId] = useState(null);
-
-
-  const [load, data, err] = useApiHooks({ s: 'spider' });
-
-  if (load) {
-    return <h1>Loading......</h1>
-  }
-
+  const [show, setshow] = useState(true);
 
 
   return (
-    <div className="p-5 grid grid-cols-2">
-      <div>
+    <div>
+      <button onClick={() => setshow(!show)}>Toggle</button>
 
-        {data && data.Search.map((movie) => {
-          return <div onClick={() => {
-            setId(movie.imdbID)
-          }} key={movie.imdbID} className="flex mb-3 space-x-5 shadow-md p-2 bx cursor-pointer">
-            <div className="img">
-              <img className="h-20 w-20 object-cover " src={movie.Poster} alt="" />
-            </div>
-
-            <div className="info">
-              <h1>{movie.Title}</h1>
-              <p>Release: {movie.Year}</p>
-
-            </div>
-
-          </div>
-        })}
-      </div>
-
-      {id == null ? <h1>Click TO Show Some Detail</h1> : <Detail id={id} />}
-
+      {show && <Sample show={show}/>}
     </div>
   )
 }
+
 export default Home

@@ -1,45 +1,47 @@
-import {useEffect, useState} from 'react'
+import { useState } from "react";
+import { useApiHooks } from "../hooks/Api_hooks"
+import Detail from "./Detail";
+
+
 
 const Home = () => {
 
-  const [show, setshow] = useState(true);
-  const [depend, setDepend] = useState(0);
+  const [id, setId] = useState(null);
 
-  const handleshow = () => {
-    setshow((prev) => !prev);
+
+  const [load, data, err] = useApiHooks({ s: 'spider' });
+
+  if (load) {
+    return <h1>Loading......</h1>
   }
 
-const handleDepend = () => {
-  setDepend((prev) => prev + 1);
-  }
-
-
-useEffect(() => {
-  console.log('effect call');
-  return () => {
-    console.log('something');
-  }
-  }, [depend]); 
 
 
   return (
-    <div className='p-5'>
+    <div className="p-5 grid grid-cols-2">
+      <div>
 
-      <h1>{depend}</h1>
+        {data && data.Search.map((movie) => {
+          return <div onClick={() => {
+            setId(movie.imdbID)
+          }} key={movie.imdbID} className="flex mb-3 space-x-5 shadow-md p-2 bx cursor-pointer">
+            <div className="img">
+              <img className="h-20 w-20 object-cover " src={movie.Poster} alt="" />
+            </div>
 
-      <button onClick={handleDepend} className=' px-2 py-2 bg-black text-white border-4 font-semibold rounded-xl'>InCrement</button>
-      
+            <div className="info">
+              <h1>{movie.Title}</h1>
+              <p>Release: {movie.Year}</p>
 
-      <div className='mt-3'>
-        <button onClick={handleshow} className=' px-2 py-2 bg-black text-white border-4 font-semibold rounded-xl'>DeCrement</button>
+            </div>
+
+          </div>
+        })}
       </div>
-    {show && <h1 className='text-2xl text-pink-700'>Show Now</h1>}
+
+      {id == null ? <h1>Click TO Show Some Detail</h1> : <Detail id={id} />}
+
     </div>
   )
 }
-
 export default Home
-
-
-
-

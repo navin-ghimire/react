@@ -1,54 +1,34 @@
-import React, { useEffect, useRef } from 'react'
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 const Home = () => {
+  const nav = useNavigate();
+  // const objs = [{ id: 1, name: 'ram' }, { id: 2, name: 'shyam' }];
+  // const newUpdateArray = objs.map((ob) => ob.id === 1 ? { id: 1, name: 'hari' } : ob);
+  // console.log(newUpdateArray);
 
-  const tar = useRef(null);
-  // useEffect(() => {
-  //   tar.current.focus();
-  // }, [])
+  const { blogs } = useSelector((state) => state.dailySlice);
 
-  const goDown = () => {
-    tar.current.scrollIntoView({ behavior: 'smooth'});
-  }
-  
-
- 
   return (
-    <div>
-      <button onClick={goDown}><h1>Go To 7</h1></button>
-      {/* <input ref={tar} className='border-2 border-black' type='text'/>
-       */}
+    <div className="grid grid-cols-3 p-2 gap-2">
 
-       <div className='bx1'>
-        <h1>box1</h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. At nam cupiditate aspernatur hic libero ipsam consequatur quis mollitia tenetur, consequuntur, enim distinctio laborum dolore quam maiores possimus blanditiis omnis beatae est adipisci ut facere natus. Dolores, atque fuga dolorem illum rerum dolore dicta ducimus culpa animi id explicabo quae quod!
-       </div>
-       <div className='bx1'>
-        <h1>box1</h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. At nam cupiditate aspernatur hic libero ipsam consequatur quis mollitia tenetur, consequuntur, enim distinctio laborum dolore quam maiores possimus blanditiis omnis beatae est adipisci ut facere natus. Dolores, atque fuga dolorem illum rerum dolore dicta ducimus culpa animi id explicabo quae quod!
-       </div>
-       <div className='bx1'>
-        <h1>box1</h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. At nam cupiditate aspernatur hic libero ipsam consequatur quis mollitia tenetur, consequuntur, enim distinctio laborum dolore quam maiores possimus blanditiis omnis beatae est adipisci ut facere natus. Dolores, atque fuga dolorem illum rerum dolore dicta ducimus culpa animi id explicabo quae quod!
-       </div>
-       <div className='bx1'>
-        <h1>box1</h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. At nam cupiditate aspernatur hic libero ipsam consequatur quis mollitia tenetur, consequuntur, enim distinctio laborum dolore quam maiores possimus blanditiis omnis beatae est adipisci ut facere natus. Dolores, atque fuga dolorem illum rerum dolore dicta ducimus culpa animi id explicabo quae quod!
-       </div>
-       <div className='bx1'>
-        <h1>box1</h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. At nam cupiditate aspernatur hic libero ipsam consequatur quis mollitia tenetur, consequuntur, enim distinctio laborum dolore quam maiores possimus blanditiis omnis beatae est adipisci ut facere natus. Dolores, atque fuga dolorem illum rerum dolore dicta ducimus culpa animi id explicabo quae quod!
-       </div>
-       <div className='bx1'>
-        <h1>box1</h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. At nam cupiditate aspernatur hic libero ipsam consequatur quis mollitia tenetur, consequuntur, enim distinctio laborum dolore quam maiores possimus blanditiis omnis beatae est adipisci ut facere natus. Dolores, atque fuga dolorem illum rerum dolore dicta ducimus culpa animi id explicabo quae quod!
-       </div>
-       <div ref={tar} className='bx7'>
-        <h1>box7</h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. At nam cupiditate aspernatur hic libero ipsam consequatur quis mollitia tenetur, consequuntur, enim distinctio laborum dolore quam maiores possimus blanditiis omnis beatae est adipisci ut facere natus. Dolores, atque fuga dolorem illum rerum dolore dicta ducimus culpa animi id explicabo quae quod!
-       </div>
+      {blogs.map((blog) => {
+        return <div key={blog.id} className="space-y-3">
+          <h1>{blog.title}</h1>
+          <img src={blog.imagePreview} alt="" />
+          <div className="flex justify-end space-x-4 items-center">
+            <button onClick={() => nav(`/editForm/${blog.id}`)} ><FaEdit color="green" size={20} /></button>
+            <button>
+              <FaTrash size={15} color=" red" />
+            </button>
+
+          </div>
+        </div>
+      })}
+
+
     </div>
   )
 }
-
 export default Home

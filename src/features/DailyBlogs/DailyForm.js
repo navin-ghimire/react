@@ -147,8 +147,8 @@ const DailyForm = () => {
               name="country"
               label="Select Country">
               <Option value="nepal">Nepal</Option>
-              <Option value="india">India</Option>
-              <Option value="china">China</Option>
+              <Option value="usa">USA</Option>
+              <Option value="denmark">Denmark</Option>
 
             </Select>
             {errors.country && touched.country && <p className="text-pink-500">{errors.country}</p>}

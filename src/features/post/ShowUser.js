@@ -6,6 +6,7 @@ import {
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { users } from "../../dummy/users";
+import UserPost from "./UserPost";
  
 
 const ShowUser = () => {
@@ -30,9 +31,7 @@ const ShowUser = () => {
         return <Accordion key={user.id} open={open.includes(user.id)}>
         <AccordionHeader onClick={() => handleOpen(user.id)}>{user.name}</AccordionHeader>
         <AccordionBody>
-          We&apos;re not always in the position that we want to be at. We&apos;re constantly
-          growing. We&apos;re constantly making mistakes. We&apos;re constantly trying to express
-          ourselves and actualize our dreams.
+         {open.includes(user.id) && <UserPost user={user} />}
         </AccordionBody>
       </Accordion>
       })}

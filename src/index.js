@@ -9,10 +9,15 @@ import { store } from './app/store';
 
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <App />
+  <App />
   </Provider>
   
 );
+
+
+
+

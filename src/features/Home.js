@@ -1,5 +1,6 @@
 import React from 'react'
-import ShowUser from './post/ShowUser'
+import MealCategory from './meal/MealCategory'
+
 
 const Home = () => {
   
@@ -7,7 +8,7 @@ const Home = () => {
   
   return (
     <div className='p-4'>
-      <ShowUser />
+    <MealCategory />
     </div>
   )
 }

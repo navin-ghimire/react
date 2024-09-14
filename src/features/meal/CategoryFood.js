@@ -1,12 +1,13 @@
 import React from 'react'
 import { useGetFoodByCategoryQuery } from './mealApi';
 import { Button, Card, CardBody, CardFooter, CardHeader, Typography } from '@material-tailwind/react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import CategorySkeleton from '../../ui/skeletons/CategorySkeleton';
 
 
 const CategoryFood = () => {
   const { category } = useParams();
+  const nav = useNavigate();
   const { data, isLoading, isError, error } = useGetFoodByCategoryQuery(category);
   if (isLoading) {
     return <CategorySkeleton />;
@@ -17,7 +18,7 @@ const CategoryFood = () => {
   return (
     <div className='grid grid-cols-3 gap-5 p-5'>
 
-      {data && data.meals.map((cata) => {
+      {data && data.meals?.map((cata) => {
         return <Card key={cata.idMeal} className="mt-6 w-full">
           <CardHeader color="blue-gray" className="relative h-56">
             <img
@@ -34,7 +35,7 @@ const CategoryFood = () => {
 
           </CardBody>
           <CardFooter className="pt-0">
-            <Button>Read More</Button>
+          <Button onClick={() => nav(`/food/${cata.idMeal}`)}>Read More</Button>
           </CardFooter>
         </Card>
       })}

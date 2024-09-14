@@ -8,9 +8,11 @@ const MealCategory = () => {
   const nav = useNavigate();
   const { data, isLoading, isError, error } = useGetFoodCategoryQuery();
   if (isLoading) {
-    return <CategorySkeleton />;
+    return <CategorySkeleton />
+            
   }
-
+    
+  console.log(data);
   return (
     <div className='grid grid-cols-3 gap-5'>
 
